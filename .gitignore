@@ -2,8 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
-composer.json
-composer.lock
+
 /vendor_
 .env.backup
 /.env
