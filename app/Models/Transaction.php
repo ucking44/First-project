@@ -18,5 +18,5 @@ class Transaction extends Model
         return $this->hasMany(Branch::class, 'branch_code', 'branch_code');
     }
 
-    
+
 }

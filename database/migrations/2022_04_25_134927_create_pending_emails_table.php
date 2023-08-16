@@ -16,8 +16,14 @@ class CreatePendingEmailsTable extends Migration
         Schema::create('pending_emails', function (Blueprint $table) {
             $table->id();
             //////$table->integer('enrolment_id');    I commented this
+            ////////$table->string('enrolment_id')->change(); I commented this
             $table->integer('template_id');
             $table->string('enrolment_id');    //////  I added this
+            $table->integer('status')->after('template_id')->default(0);
+            $table->integer('tries')->after('status')->default(0);
+            $table->string('subject')->default('Fidelity Green Reward Notification');
+            $table->text('body');//->default();
+            $table->string('from')->default('greenrewards@loyaltysolutionsnigeria.com');
             $table->timestamps();
         });
     }

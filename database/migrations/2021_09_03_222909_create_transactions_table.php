@@ -15,12 +15,12 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         //
-        
+
         Schema::create('transactions', function (Blueprint $table) {
             //$table->dropForeign('transactions_member_id_foreign');
-        Schema::dropIfExists('transactions');
             $table->id();
             $table->string('member_reference');
+            $table->string('account_number')->nullable();
             $table->string('product_code');
             $table->integer('quantity');
             $table->decimal('amount', 20, 2);
@@ -29,6 +29,9 @@ class CreateTransactionsTable extends Migration
             $table->string('channel');
             $table->string('transaction_type');
             $table->integer('transaction_log_id');
+            $table->date('transaction_date');
+            $table->integer('cron_id');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -40,6 +43,6 @@ class CreateTransactionsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('transactions');
     }
 }

@@ -15,6 +15,12 @@ class CreateTransactionReportLogsTable extends Migration
     {
         Schema::create('transaction_report_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('customer_reference')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('branch_code')->nullable();
+            $table->string('status_code')->nullable();
+            $table->text('status_message')->nullable();
+            $table->string('transaction_date')->nullable();
             $table->timestamps();
         });
     }

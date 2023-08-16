@@ -17,10 +17,10 @@ class AddCronIdToEnrolmentsAndTransactionsTables extends Migration
             //
             $table->integer('cron_id');
         });
-        Schema::table('transactions', function (Blueprint $table) {
-            //
-            $table->integer('cron_id');
-        });
+        // Schema::table('transactions', function (Blueprint $table) {
+        //     //
+        //     $table->integer('cron_id');
+        // });
     }
 
     /**

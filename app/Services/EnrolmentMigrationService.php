@@ -13,20 +13,20 @@ class EnrolmentMigrationService extends MigrationService{
   public static $key = '!QAZXSW@#EDCVFR$';
   public static $iv = '5666685225155700';
   public static $placeholders = array('$first_name', '$last_name', '$membership_id',  '$password', '$program', '$link');
- 
+
     public function __construct()
     {
-        
+
     }
 
     public static function migrateEnrolments1() : string
     {
         //$this->key = '!QAZXSW@#EDCVFR$';
-        
+
         self::$username = 'diamondcustomer';
         self::$password = parent::string_encrypt('Di@mond10$#', self::$key,self::$iv);
         $data = [];
-        $failure_count = 0; 
+        $failure_count = 0;
         $success_count = 0;
         $company_details = new CompanyService(env('COMPANY_ID', 1));
         $company_details = $company_details->getCompanyDetails()->get();
@@ -45,8 +45,8 @@ class EnrolmentMigrationService extends MigrationService{
                     'auto_gen_password'=>$pendingEnrolment->password?$pendingEnrolment->password:'1234',
                     'auto_gen_pin'=>$pendingEnrolment->pin?$pendingEnrolment->pin:'0000',
                     'API_flag'=>'enrol',
-                    
-         ); 
+
+         );
           $resp = parent::pushToPERX(parent::$url, $arrayToPush, parent::$headerPayload);
         if (parent::isJSON($resp)) {
           $repsonse = json_decode($resp, true);
@@ -82,10 +82,10 @@ class EnrolmentMigrationService extends MigrationService{
           $data['format'] = "not json serialized";
         }
     }
-          
+
   }else{
-          $data['message'] = "no un-enroled customers found"; 
-         
+          $data['message'] = "no un-enroled customers found";
+
        }
     return json_encode($data);
 }
@@ -93,7 +93,7 @@ class EnrolmentMigrationService extends MigrationService{
 
 
 
- 
+
 
 }
 ?>
