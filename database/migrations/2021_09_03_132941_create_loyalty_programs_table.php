@@ -20,6 +20,7 @@ class CreateLoyaltyProgramsTable extends Migration
             $table->string('name');
             $table->string('currency_name');
             $table->string('image_url')->nullable();
+            $table->string("slug")->comment("This is done so that a routeable slug can be added"); //;//->collation("utf8mb4_unicode_ci")
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

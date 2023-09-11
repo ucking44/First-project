@@ -30,7 +30,9 @@ class CreateTransactionsTable extends Migration
             $table->string('transaction_type');
             $table->integer('transaction_log_id');
             $table->date('transaction_date');
-            $table->integer('cron_id');
+            $table->date('dumped_date');
+            $table->bigInteger('cron_id')->nullable();
+            //$table->unsignedBigInteger('cron_id')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });

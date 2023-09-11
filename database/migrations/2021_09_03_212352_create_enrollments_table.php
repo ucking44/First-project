@@ -15,12 +15,11 @@ class CreateEnrollmentsTable extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('loyalty_program_id')->unsigned();
+            $table->unsignedBigInteger('loyalty_program_id')->nullable();
             $table->foreign('loyalty_program_id')->references('id')->on('loyalty_programs');
-            //$table->bigInteger('branch_id')->unsigned();
-            //$table->foreign('branch_code')->references('id')->on('branches');
-            $table->bigInteger('tier_id')->unsigned();
-            //$table->foreign('tier_id')->references('id')->on('tiers');
+            $table->unsignedBigInteger('branch_id')->nullable();
+            $table->unsignedBigInteger('tier_id')->nullable();
+            $table->bigInteger('cron_id')->nullable();
             $table->string('branch_code')->nullable();
             $table->string('loyalty_number')->index();
             $table->string('first_name')->index();
@@ -42,10 +41,14 @@ class CreateEnrollmentsTable extends Migration
             $table->dateTime('last_change_password')->nullable();
             $table->string('password');
             $table->string('pin')->nullable();
+            $table->integer('enrollment_status')->default(0)->nullable();
+            $table->integer('tries')->default(0)->nullable()->comment('counts the number of times the enrollment migration has been tried');
             $table->date('birthday')->nullable();
             $table->date('anniversary')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->date('date_enrolled')->nullable();
+            $table->foreign('branch_code')->references('id')->on('branches');
+            $table->foreign('tier_id')->references('id')->on('tiers');
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@ class AddEnrollmentStatusToEnrolmentsTable extends Migration
     {
         Schema::table('enrollments', function (Blueprint $table) {
             //
-            $table->integer('enrollment_status')->default(0)->nullable();
-            $table->integer('tries')->default(0)->nullable()->comment('counts the number of times the enrollment migration has been tried');
+            //$table->integer('enrollment_status')->default(0)->nullable();
+            //$table->integer('tries')->default(0)->nullable()->comment('counts the number of times the enrollment migration has been tried');
         });
     }
 

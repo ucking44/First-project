@@ -17,13 +17,14 @@ class LoyaltyProgram extends Model
         'currency_name',
         'image_url',
         'status',
+        'slug'
     ];
 
 
     public function enrollment(){
         return $this->hasMany(Enrollment::class);
     }
-    
+
     public function company(){
         return $this->belongsTo(Company::class);
     }

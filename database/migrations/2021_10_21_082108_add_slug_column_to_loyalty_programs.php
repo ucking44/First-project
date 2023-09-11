@@ -14,8 +14,8 @@ class AddSlugColumnToLoyaltyPrograms extends Migration
     public function up()
     {
         Schema::table('loyalty_programs', function (Blueprint $table) {
-            $table->string("slug") //;//->collation("utf8mb4_unicode_ci")
-            ->comment("This is done so that a routeable slug can be added");
+            // $table->string("slug") //;//->collation("utf8mb4_unicode_ci")
+            // ->comment("This is done so that a routeable slug can be added");
         });
     }
 
