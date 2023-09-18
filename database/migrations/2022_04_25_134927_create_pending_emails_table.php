@@ -19,8 +19,8 @@ class CreatePendingEmailsTable extends Migration
             ////////$table->string('enrolment_id')->change(); I commented this
             $table->integer('template_id');
             $table->string('enrolment_id');    //////  I added this
-            $table->integer('status')->after('template_id')->default(0);
-            $table->integer('tries')->after('status')->default(0);
+            $table->integer('status')->default(0); //->after('template_id')->default(0);
+            $table->integer('tries')->default(0); //->after('status')->default(0);
             $table->string('subject')->default('Fidelity Green Reward Notification');
             $table->text('body');//->default();
             $table->string('from')->default('greenrewards@loyaltysolutionsnigeria.com');

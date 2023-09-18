@@ -19,9 +19,11 @@ class CreateEnrollmentsTable extends Migration
             $table->foreign('loyalty_program_id')->references('id')->on('loyalty_programs');
             $table->unsignedBigInteger('branch_id')->nullable();
             $table->unsignedBigInteger('tier_id')->nullable();
+            $table->unsignedBigInteger('branch_code')->nullable();
             $table->bigInteger('cron_id')->nullable();
-            $table->string('branch_code')->nullable();
+            $table->string('branch_codes')->nullable();
             $table->string('loyalty_number')->index();
+            $table->string('account_number'); //like BVN
             $table->string('first_name')->index();
             $table->string('middle_name')->nullable();
             $table->string('last_name')->index();
@@ -34,7 +36,8 @@ class CreateEnrollmentsTable extends Migration
             $table->decimal('total_credit', 15,2)->default(0.00);
             $table->decimal('total_debit', 15,2)->default(0.00);
             $table->decimal('blocked_points', 15,2)->default(0.00);
-            $table->string('member_reference'); //like BVN
+            //$table->string('member_reference'); //like BVN
+            $table->string('member_cif'); //like BVN
             $table->tinyInteger('first_login')->default(0);
             $table->dateTime('first_login_time')->nullable();
             $table->tinyInteger('terms_agreed')->default(0);
@@ -47,7 +50,8 @@ class CreateEnrollmentsTable extends Migration
             $table->date('anniversary')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->date('date_enrolled')->nullable();
-            $table->foreign('branch_code')->references('id')->on('branches');
+            //$table->foreign('branch_code')->references('id')->on('branches');
+            $table->foreign('branch_code')->references('id')->on('branches')->onDelete('cascade');
             $table->foreign('tier_id')->references('id')->on('tiers');
             $table->timestamps();
         });
