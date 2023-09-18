@@ -19,18 +19,18 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             //$table->dropForeign('transactions_member_id_foreign');
             $table->id();
-            $table->string('member_cif');
+            $table->string('member_cif')->nullable();
             $table->string('account_number')->nullable();
-            $table->string('product_code');
+            $table->string('product_code')->nullable();
             $table->bigInteger('quantity')->nullable();
-            $table->decimal('amount', 20, 2);
-            $table->string('branch_code');
-            $table->string('transaction_reference');
-            $table->string('channel');
-            $table->string('transaction_type');
-            $table->bigInteger('transaction_log_id');
-            $table->date('transaction_date');
-            $table->date('dumped_date');
+            $table->double('amount', 20, 2)->nullable();
+            $table->string('branch_code')->nullable();
+            $table->string('transaction_reference')->nullable();
+            $table->string('channel')->nullable();
+            $table->string('transaction_type')->nullable();
+            $table->bigInteger('transaction_log_id')->nullable();
+            $table->date('transaction_date')->nullable();
+            $table->date('dumped_date')->nullable();
             $table->bigInteger('cron_id')->nullable();
             //$table->unsignedBigInteger('cron_id')->nullable();
             $table->integer('status')->default(0);
